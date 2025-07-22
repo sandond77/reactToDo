@@ -31,20 +31,21 @@ export default function Todolist() {
 		}
 	];
 
-	const [checked, setChecked] = useState(0);
 	const [tasks, setTasks] = useState(initialTasks);
 
-	const handleToggle = (value) => () => {
-		const currentIndex = checked.indexOf(value);
-		const newChecked = [...checked];
-
-		if (currentIndex === -1) {
-			newChecked.push(value);
-		} else {
-			newChecked.splice(currentIndex, 1);
-		}
-
-		setChecked(newChecked);
+	const handleToggle = (id) => {
+		setTasks((prevTasks) =>
+			prevTasks.map((task) => {
+				if (task.id === id) {
+					return {
+						...task,
+						completed: !task.completed
+					};
+				} else {
+					return task;
+				}
+			})
+		);
 	};
 
 	const handleDelete = (id) => {
@@ -63,6 +64,7 @@ export default function Todolist() {
 					key={task.id}
 					task={task}
 					handleDelete={() => handleDelete(task.id)}
+					handleToggle={() => handleToggle(task.id)}
 				/>
 			))}
 		</List>
