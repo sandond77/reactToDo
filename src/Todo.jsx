@@ -4,15 +4,23 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
-// import IconButton from '@mui/material/IconButton';
+import IconButton from '@mui/material/IconButton';
 // import CommentIcon from '@mui/icons-material/Comment';
 
-export default function Todo({ task }) {
+export default function Todo({ task, handleDelete }) {
 	console.log(task);
 	const labelId = `checkbox-list-label-${task.id}`;
 
 	return (
-		<ListItem key={task.id} disablePadding>
+		<ListItem
+			key={task.id}
+			secondaryAction={
+				<IconButton edge="end" aria-label="comments">
+					<DeleteIcon onClick={handleDelete} />
+				</IconButton>
+			}
+			disablePadding
+		>
 			<ListItemButton
 				role={undefined}
 				// onClick={}
@@ -28,7 +36,6 @@ export default function Todo({ task }) {
 					/>
 				</ListItemIcon>
 				<ListItemText id={task.id} primary={task.task} />
-				<DeleteIcon />
 			</ListItemButton>
 		</ListItem>
 	);

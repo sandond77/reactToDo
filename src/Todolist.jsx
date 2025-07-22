@@ -47,11 +47,24 @@ export default function Todolist() {
 		setChecked(newChecked);
 	};
 
+	const handleDelete = (id) => {
+		console.log('delete');
+
+		//copies previous state object and filters out every task that doesnt have the same id as deleted task
+		setTasks((prevTasks) => {
+			return prevTasks.filter((task) => task.id !== id);
+		});
+	};
+
 	return (
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-			{tasks.map((task) => {
-				return <Todo key={task.id} task={task} />;
-			})}
+			{tasks.map((task) => (
+				<Todo
+					key={task.id}
+					task={task}
+					handleDelete={() => handleDelete(task.id)}
+				/>
+			))}
 		</List>
 	);
 }
