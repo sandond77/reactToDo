@@ -6,7 +6,6 @@ function App() {
 	return (
 		<>
 			<CssBaseline />
-			<h1>React MaterialUI To Do List</h1>
 			<Todolist />
 		</>
 	);
