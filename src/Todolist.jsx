@@ -1,39 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import Todo from './Todo';
 import Todoform from './Todoform';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Todolist() {
-	const initialTasks = [
-		{
-			id: uuidv4(),
-			task: 'Clean out the garage',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			task: 'Finish React tutorial',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			task: 'Call mom',
-			completed: true
-		},
-		{
-			id: uuidv4(),
-			task: 'Buy groceries',
-			completed: false
-		},
-		{
-			id: uuidv4(),
-			task: 'Read 20 pages of a book',
-			completed: false
-		}
-	];
+	const getInitialTasks = () => {
+		const data = JSON.parse(localStorage.getItem('tasks'));
+		if (!data) return [];
+		return data;
+	};
+	const [tasks, setTasks] = useState(getInitialTasks);
 
-	const [tasks, setTasks] = useState(initialTasks);
+	useEffect(() => {
+		localStorage.setItem('tasks', JSON.stringify(tasks));
+	}, [tasks]);
 
 	const handleToggle = (id) => {
 		setTasks((prevTasks) =>
