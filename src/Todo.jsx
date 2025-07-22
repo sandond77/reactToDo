@@ -39,6 +39,7 @@ export default function Todo() {
 	];
 
 	const [checked, setChecked] = useState(0);
+	const [tasks, setTasks] = useState(initialTasks);
 
 	const handleToggle = (value) => () => {
 		const currentIndex = checked.indexOf(value);
@@ -55,21 +56,22 @@ export default function Todo() {
 
 	return (
 		<List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-			{initialTasks.map((task) => {
+			{tasks.map((task) => {
+				const labelId = `checkbox-list-label-${task.id}`;
 				return (
 					<ListItem key={task.id} disablePadding>
 						<ListItemButton
-						// role={undefined}
-						// onClick={handleToggle(value)}
-						// dense
+							role={undefined}
+							// onClick={}
+							dense
 						>
 							<ListItemIcon>
 								<Checkbox
-								// edge="start"
-								// checked={checked.includes(value)}
-								// tabIndex={-1}
-								// disableRipple
-								// inputProps={{ 'aria-labelledby': labelId }}
+									edge="start"
+									checked={task.completed}
+									tabIndex={-1}
+									disableRipple
+									inputProps={{ 'aria-labelledby': labelId }}
 								/>
 							</ListItemIcon>
 							<ListItemText id={task.id} primary={task.task} />
