@@ -18,6 +18,7 @@ export default function Todo({ task, handleDelete, handleToggle }) {
 					<DeleteIcon onClick={handleDelete} />
 				</IconButton>
 			}
+			sx={task.completed && { textDecoration: 'line-through' }}
 			disablePadding
 		>
 			<ListItemButton
