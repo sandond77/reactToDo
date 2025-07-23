@@ -5,7 +5,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-// import CommentIcon from '@mui/icons-material/Comment';
 
 export default function Todo({ task, handleDelete, handleToggle }) {
 	const labelId = `checkbox-list-label-${task.id}`;
@@ -21,11 +20,7 @@ export default function Todo({ task, handleDelete, handleToggle }) {
 			sx={task.completed && { textDecoration: 'line-through' }}
 			disablePadding
 		>
-			<ListItemButton
-				role={undefined}
-				// onClick={}
-				dense
-			>
+			<ListItemButton role={undefined} dense>
 				<ListItemIcon>
 					<Checkbox
 						edge="start"
